@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ApirestService } from '../apirest.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(private api : ApirestService ) { }
 
   ngOnInit() {
+    this.api.getUsers()
+    
   }
 
 }

@@ -6,4 +6,21 @@
 
 <ion-content>
 
+  <div class="ion-text-center">
+    <h2>Ingreso</h2>
+  </div>
+  <ion-item>
+    <ion-label position="floating">Nombre de usuario</ion-label>
+    <ion-input placeholder="Ej: Joshua1234" #nombre></ion-input>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input  type="password"  placeholder="Ej: ******" #contrasena></ion-input>
+  </ion-item>
+  <br>
+  <br>
+  <ion-button (click)="onClick()" expand="full" color="secondary"   shape="round">
+    Ingresar
+  </ion-button>
 </ion-content>
