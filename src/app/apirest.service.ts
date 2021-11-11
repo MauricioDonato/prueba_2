@@ -24,4 +24,19 @@ export class ApirestService {
     })
     
   }
+  
+  async getUserID(id: number)
+  {
+    let url = this.apiURL + 'users/' + id;
+    return new Promise((resolve, reject) =>
+    {
+      this.http.get(url).subscribe((data: any) =>
+      {
+        this.datos = data;
+     
+      },
+      error => { console.log("error en la solicitud")
+      })
+    })
+  }
 }
