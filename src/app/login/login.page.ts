@@ -3,6 +3,8 @@ import { ApirestService } from '../apirest.service';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CrudService } from '../crud.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -11,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   constructor(private api : ApirestService, private alertController: AlertController,
-    private toastController: ToastController,private activatedRouter : ActivatedRoute ) { }
+    private toastController: ToastController,private activatedRouter : ActivatedRoute,private crud: CrudService,  private router          : Router, ) { }
   listado = [];
   nombreUsuario = "";
   fonoUsuario = "";
@@ -23,7 +25,9 @@ export class LoginPage implements OnInit {
     
   }
   async ingresar(nombre :HTMLInputElement, contrasena: HTMLInputElement){
+      this.listado = this.api.listado
       var contra_v = "1234";
+      var valido = false ;
       if(nombre.value.trim().length == 0  ){
         const toast = await this.toastController.create({
           message: 'Debe ingresar un nombre de usuario',
@@ -43,8 +47,25 @@ export class LoginPage implements OnInit {
 
             
         }}
+        for(let usuario of this.listado ){
+            console.log(usuario.username)
+            console.log(usuario.id)
+            if(usuario.username == nombre.value ){
+              valido = true
+              this.crud.set(String(usuario.id), usuario.username)
+            }
+        }
 
+        if(valido == false){ const toast = await this.toastController.create({
+          message: 'Debe ingresar un nombre valido',
+          duration: 2000,
+          color : "danger",
+          position : "middle"
+        }); toast.present();
+        return;
+        
 
+        }
         if(contrasena.value != "1234"){
           const toast = await this.toastController.create({
             message: 'Debe ingresar un contraseña validad',
@@ -56,6 +77,8 @@ export class LoginPage implements OnInit {
 
 
         }
+    
+        this.router.navigateByUrl('/detalle')
       
 
 
