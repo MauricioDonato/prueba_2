@@ -1,26 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title class="login">Login</ion-title>
   </ion-toolbar>
 </ion-header>
+<br><br>
 
 <ion-content>
-
   <div class="ion-text-center">
-    <h2>Ingreso</h2>
+    <h2>Iniciar sesion</h2>
   </div>
-  <ion-item>
-    <ion-label position="floating">Nombre de usuario</ion-label>
-    <ion-input placeholder="Ej: Joshua1234" #nombre></ion-input>
-  </ion-item>
   <br>
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input  type="password"  placeholder="Ej: ******" #contrasena></ion-input>
-  </ion-item>
+  <div>
+    <ion-grid fixed >
+      <ion-row>
+        <ion-col size="6" >
+          <ion-item color="medium">
+            <ion-icon name="person" slot="start"></ion-icon>
+            <ion-label position="floating">Nombre de usuario</ion-label>
+            <ion-input placeholder="Ej: Joshua1234" #nombre></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item color="medium">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" placeholder="Ej: ******" #contrasena></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
   <br>
   <br>
-  <ion-button  (click)="ingresar(nombre, contrasena)" expand="full" color="secondary"   shape="round">
-    Ingresar
-  </ion-button>
+  <div name="log-in" class="ion-text-center">
+    <ion-button (click)="ingresar(nombre, contrasena)" color="secondary" shape="round">
+      Ingresar
+    </ion-button>
+  </div>
 </ion-content>
