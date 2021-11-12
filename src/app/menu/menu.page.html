@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="listado.length > 0">
+    <ion-list>
+      <h2 class="ion-text-center">Listado comentarios</h2>
+      <div *ngFor="let item of listado" [routerLink]="['/detalle/', item.id]">
+        
+        <ion-item>
+          <ion-label  color="secondary">Name :{{ item.id }}</ion-label>
+        </ion-item>
+      
+        <hr>
+        
+      </div>
+    </ion-list>  
+  </div>
+</ion-content>

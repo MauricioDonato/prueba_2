@@ -21,65 +21,68 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.api.getUsers()
+    this.api.listado
     
     
   }
   async ingresar(nombre :HTMLInputElement, contrasena: HTMLInputElement){
-      this.listado = this.api.listado
-      var contra_v = "1234";
-      var valido = false ;
-      if(nombre.value.trim().length == 0  ){
-        const toast = await this.toastController.create({
-          message: 'Debe ingresar un nombre de usuario',
-          duration: 2000,
-          color : "danger",
-          position : "middle"
-        }) ; toast.present(); return}
-        else{
-          if(contrasena.value.trim().length == 0  ){
-            const toast = await this.toastController.create({
-              message: 'Debe ingresar un contraseña',
-              duration: 2000,
-              color : "danger",
-              position : "middle"
-            }); toast.present();
-            return;
-
-            
-        }}
-        for(let usuario of this.listado ){
-            console.log(usuario.username)
-            console.log(usuario.id)
-            if(usuario.username == nombre.value ){
-              valido = true
-              this.crud.set(String(usuario.id), usuario.username)
-            }
-        }
-
-        if(valido == false){ const toast = await this.toastController.create({
-          message: 'Debe ingresar un nombre valido',
-          duration: 2000,
-          color : "danger",
-          position : "middle"
-        }); toast.present();
-        return;
-        
-
-        }
-        if(contrasena.value != "1234"){
+    var id_cor;
+    this.listado = this.api.listado
+    var contra_v = "1234";
+    var valido = false ;
+    if(nombre.value.trim().length == 0  ){
+      const toast = await this.toastController.create({
+        message: 'Debe ingresar un nombre de usuario',
+        duration: 2000,
+        color : "danger",
+        position : "middle"
+      }) ; toast.present(); return}
+      else{
+        if(contrasena.value.trim().length == 0  ){
           const toast = await this.toastController.create({
-            message: 'Debe ingresar un contraseña validad',
+            message: 'Debe ingresar un contraseña',
             duration: 2000,
             color : "danger",
             position : "middle"
           }); toast.present();
           return;
 
+          
+      }}
+      for(let usuario of this.listado ){
+          console.log(usuario.username)
+          console.log(usuario.id)
+          if(usuario.username == nombre.value ){
+            valido = true
+            id_cor = usuario.id;
+            this.crud.set(usuario.id,usuario.id);
+          }
+      }
 
-        }
-    
-        this.router.navigateByUrl('/detalle')
+      if(valido == false){ const toast = await this.toastController.create({
+        message: 'Debe ingresar un nombre valido',
+        duration: 2000,
+        color : "danger",
+        position : "middle"
+      }); toast.present();
+      return;
       
+
+      }
+      if(contrasena.value != "1234"){
+        const toast = await this.toastController.create({
+          message: 'Debe ingresar un contraseña validad',
+          duration: 2000,
+          color : "danger",
+          position : "middle"
+        }); toast.present();
+        return;
+
+
+      }
+      
+      this.router.navigateByUrl('/' +String (id_cor))
+    
 
 
   }
