@@ -54,4 +54,19 @@ export class ApirestService {
     })
     
   }
+  getUsercomen(id : String)
+  {
+    let url = this.apiURL + "posts/" + id + "/comments";
+    return new Promise((resolve, reject) =>
+    {
+      this.http.get(url).subscribe((data: []) =>
+      {
+        data.forEach(item => { this.listado.push(item); });
+        console.table(this.listado);
+      },
+      error => { console.log("error en la solicitud")}
+      )
+    })
+    
+  }
 }

@@ -13,9 +13,9 @@ export class CrudService {
     // crear el storage de ionic para este proyecto
     await this.storage.create();
   }
-  async set(key:String, valor: any)
+  async set(key:any, valor: any)
   {
-    await this.storage.set(valor[0].id, valor);
+    await this.storage.set(key, valor);
   }    
   async get(key:string)
   {

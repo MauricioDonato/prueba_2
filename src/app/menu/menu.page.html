@@ -8,15 +8,33 @@
   <div *ngIf="listado.length > 0">
     <ion-list>
       <h2 class="ion-text-center">Listado comentarios</h2>
-      <div *ngFor="let item of listado" [routerLink]="['/detalle/', item.id]">
-        
+      <div *ngFor="let item of listado"  [routerLink]="['/', item.id]">
         <ion-item>
-          <ion-label  color="secondary">Name :{{ item.id }}</ion-label>
+          <ion-input #id type="text" hidden>{{item.id}}</ion-input>
+          <ion-label     color="secondary"><b> ID Comentario</b> :{{ item.id }}</ion-label>
         </ion-item>
-      
+        <ion-item>
+          <ion-label  color="secondary"><b> Titulo </b>  :{{ item.title}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label  color="secondary"><b> Cuerpo </b>  :{{ item.body}}</ion-label>
+        </ion-item>
+        <br><br>
+        
         <hr>
         
       </div>
     </ion-list>  
   </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="listar()">
+      <ion-icon slot="icon-only" name="list"></ion-icon>
+    </ion-button>
+     <ion-button (click)="salir()" fill="clear" slot="end">
+    <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
+  </ion-button>
+  </ion-toolbar>
+ 
+</ion-footer>

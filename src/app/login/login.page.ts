@@ -49,26 +49,7 @@ export class LoginPage implements OnInit {
 
           
       }}
-      for(let usuario of this.listado ){
-          console.log(usuario.username)
-          console.log(usuario.id)
-          if(usuario.username == nombre.value ){
-            valido = true
-            id_cor = usuario.id;
-            this.crud.set(usuario.id,usuario.id);
-          }
-      }
-
-      if(valido == false){ const toast = await this.toastController.create({
-        message: 'Debe ingresar un nombre valido',
-        duration: 2000,
-        color : "danger",
-        position : "middle"
-      }); toast.present();
-      return;
       
-
-      }
       if(contrasena.value != "1234"){
         const toast = await this.toastController.create({
           message: 'Debe ingresar un contraseña validad',
@@ -80,8 +61,30 @@ export class LoginPage implements OnInit {
 
 
       }
+      for(let usuario of this.listado ){
+        console.log(usuario.username)
+        console.log(usuario.id)
+        if(usuario.username == nombre.value ){
+          valido = true
+          id_cor = usuario.id;
+          const id = localStorage.length + 1;
+
+          localStorage.setItem(id.toString(), usuario.id )
+        }
+    }
+
+    if(valido == false){ const toast = await this.toastController.create({
+      message: 'Debe ingresar un nombre valido',
+      duration: 2000,
+      color : "danger",
+      position : "middle"
+    }); toast.present();
+    return;
+    
+
+    }
       
-      this.router.navigateByUrl('/' +String (id_cor))
+      this.router.navigateByUrl('/'+String("menu"))
     
 
 

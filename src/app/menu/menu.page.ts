@@ -12,16 +12,31 @@ import { CrudService } from '../crud.service';
 })
 export class MenuPage implements OnInit {
   listado = [];
+  datos: any;
   constructor(private api : ApirestService, private alertController: AlertController,
     private toastController: ToastController,private activatedRouter : ActivatedRoute,private crud: CrudService,  private router          : Router,) { }
+  
+  ngOnInit() { 
+  }
+  listar(){
+    for(let id = 1; id <= localStorage.length; id++){
+      this.datos = localStorage.getItem(id.toString())
+     
+    }
+     this.api.getUserPost(this.datos);
+     this.listado = this.api.listado;
+  }
+  comentario(id : HTMLInputElement){
+    var con = this.crud.get.length + 1;
+    this.crud.set(String(con), id.value);
+    this.router.navigateByUrl('/' + String(id.value))
+    
+  }
+  
+  salir(){
+    localStorage.clear();
+    this.router.navigateByUrl('/login')
 
-  ngOnInit() {
-    this.activatedRouter.paramMap.subscribe(p => {
-      const id = p.get('id');
-      console.log(id);
-      this.api.getUserPost(String(id));})
-      
-      this.listado = this.api.listado
   }
 
 }
