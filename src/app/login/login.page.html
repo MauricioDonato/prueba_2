@@ -11,9 +11,9 @@
   </div>
   <br>
   <div>
-    <ion-grid fixed >
+    <ion-grid fixed>
       <ion-row>
-        <ion-col size="12" >
+        <ion-col size="12">
           <ion-item color="medium">
             <ion-icon name="person" slot="start"></ion-icon>
             <ion-label position="floating">Nombre de usuario</ion-label>
@@ -43,5 +43,24 @@
     <ion-button (click)="ingresar(nombre, contrasena)" color="secondary" shape="round">
       Ingresar
     </ion-button>
-  </div> 
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <h6 style="text-align: center;">Siguenos en nuestras redes sociales!!</h6>
+      <div style="text-align: center;">
+        <ion-button (click)="onClick()"  fill="clear" shape="round">
+          <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+        </ion-button>
+        <ion-button (click)="onClick()" fill="clear" shape="round">
+          <ion-icon ios="logo-instagram" md="logo-instagram"></ion-icon>
+        </ion-button>
+        <ion-button (click)="onClick()"  fill="clear" shape="round">
+          <ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
