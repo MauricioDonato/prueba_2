@@ -62,8 +62,7 @@ export class LoginPage implements OnInit {
 
       }
       for(let usuario of this.listado ){
-        console.log(usuario.username)
-        console.log(usuario.id)
+        
         if(usuario.username == nombre.value ){
           valido = true
           id_cor = usuario.id;
@@ -85,7 +84,7 @@ export class LoginPage implements OnInit {
     }
       
       this.router.navigateByUrl('/'+String("menu"))
-    
+        
 
 
   }

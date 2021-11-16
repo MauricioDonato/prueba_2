@@ -1,14 +1,17 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar  color="medium">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
     <ion-title>detalle</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="listado.length > 0">
+  <div *ngIf="listad.length > 0">
     <ion-list>
       <h2 class="ion-text-center">Listado comentarios</h2>
-      <div *ngFor="let item of listado">
+      <div *ngFor="let item of listad">
         <ion-item>
           <ion-label    color="secondary"><b> ID Post</b> :{{ item.postId }}</ion-label>
         </ion-item>
@@ -32,7 +35,7 @@
 
 </ion-content>
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar  color="medium">
      <ion-button (click)="salir()" fill="clear" slot="end">
     <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
   </ion-button>

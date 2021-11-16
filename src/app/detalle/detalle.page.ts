@@ -11,22 +11,27 @@ import { CrudService } from '../crud.service';
   styleUrls: ['./detalle.page.scss'],
 })
 export class DetallePage implements OnInit {
- 
+  listad = [];
+  persona : String;
   constructor(private api : ApirestService, private alertController: AlertController,
     private toastController: ToastController,private activatedRouter : ActivatedRoute,private crud: CrudService,  private router      : Router,) { }
-    listado = [];
+    
   ngOnInit() {
-    this.activatedRouter.paramMap.subscribe(p => {
-      const id = p.get('id');
-      console.log(id);
-      this.api.getUsercomen(String(id));})
-      this.listado = this.api.listado
-     
-
+    this.activatedRouter.paramMap.subscribe(async p => {
+      this.persona = p.get('id');
+    })
+    this.leer();     
   }
+  async leer() {
+    await this.api.getUsercomen(this.persona);
+    this.listad = this.api.listado;
+    console.log("metodo leer" + this.listad);
+    console.log(this.persona);
+  }
+  
   salir(){
     localStorage.clear();
-    this.router.navigateByUrl('/login')
+    this.listad = [];
+    this.router.navigateByUrl('/login')}
 
-  }
 }
