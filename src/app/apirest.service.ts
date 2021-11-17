@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient}  from '@angular/common/http';
+import { CrudService } from './crud.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,7 +10,7 @@ export class ApirestService {
   datos : any;
   private apiURL = "https://jsonplaceholder.typicode.com/"
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private crud: CrudService) { }
   getUsers()
   {
     let url = this.apiURL + 'users';
@@ -18,6 +20,7 @@ export class ApirestService {
       {
         data.forEach(item => { this.listado.push(item); });
         console.table(this.listado);
+        
       },
       error => { console.log("error en la solicitud")}
       )
@@ -47,11 +50,25 @@ export class ApirestService {
     return new Promise((resolve, reject) =>
     { this.http.get(url).subscribe((data: any) =>
       {
-        data.forEach(item => { this.listado.push(item); });
-
-      },
-      error => { console.log("error en la solicitud")}
-      )
+        data.forEach(item => { this.listado.push(item);  });
+        for (let index = 0; index < this.listado.length ; index++) {
+          
+          this.crud.set(String(index), this.listado[index] );
+        
+        }
+       ;
+      }, 
+      error => 
+      { for (let index = 0; index < 9; index++) {
+        const element = index;
+        this.crud.get(String(element)).then(item => { this.listado.push(item);})
+        
+      }
+      
+        console.log(this.listado)
+      })
+     
+    
     })
     
   }
@@ -66,10 +83,23 @@ export class ApirestService {
       {
         resolve(data)
         data.forEach(item => { this.listado.push(item); });
-       
+        
+        for (let index = 0; index < this.listado.length; index++) {
+          const element = index;
+          this.crud.set("post" +element, this.listado[index]);
+        
+        }
+       ;
+        
       },
-      error => { console.log("error en la solicitud")}
-      )
+      error => 
+      { for (let index = 0; index < 5; index++) {
+        const element = index;
+
+        this.crud.get("post" + String(index)).then(item => { this.listado.push(item);})
+        }
+        console.log(this.listado)
+      })
     })
     
   }
