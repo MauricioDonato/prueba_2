@@ -59,7 +59,7 @@ export class ApirestService {
        ;
       }, 
       error => 
-      { for (let index = 0; index < 9; index++) {
+      { for (let index = 0; index < 10; index++) {
         const element = index;
         this.crud.get(String(element)).then(item => { this.listado.push(item);})
         

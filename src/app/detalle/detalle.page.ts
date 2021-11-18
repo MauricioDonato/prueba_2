@@ -34,6 +34,5 @@ export class DetallePage implements OnInit {
     localStorage.clear();
     this.listad = [];
     this.router.navigateByUrl('/login')}
-  
 
 }
