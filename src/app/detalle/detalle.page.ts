@@ -20,10 +20,11 @@ export class DetallePage implements OnInit {
     this.activatedRouter.paramMap.subscribe(async p => {
       this.persona = p.get('id');
     })
+
     this.leer();     
   }
   async leer() {
-    await this.api.getUsercomen(this.persona);
+    this.api.getUsercomen(this.persona);
     this.listad = this.api.listado;
     console.log("metodo leer" + this.listad);
     console.log(this.persona);
@@ -33,5 +34,6 @@ export class DetallePage implements OnInit {
     localStorage.clear();
     this.listad = [];
     this.router.navigateByUrl('/login')}
+  
 
 }
